@@ -7,8 +7,8 @@ import station from '../data/station.json'
 
 export default () => {
     const map = {
-        lat: 60.169744,
-        lng: 24.933468,
+        lat: 60.167,
+        lng: 24.936,
         zoom: 13,
         number: 1
     };
