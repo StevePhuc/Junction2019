@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import { Home, Map, LocationOn } from '@material-ui/icons';
+import { getThemeProps } from '@material-ui/styles';
 
 const useStyles = makeStyles({
     root: {
@@ -10,7 +11,7 @@ const useStyles = makeStyles({
     },
 });
 
-export default function SimpleBottomNavigation() {
+export default function SimpleBottomNavigation(props) {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
 
@@ -19,6 +20,8 @@ export default function SimpleBottomNavigation() {
             value={value}
             onChange={(event, newValue) => {
                 setValue(newValue);
+                // console.log(newValue);
+                props.setTab(newValue)
             }}
             showLabels
             className={classes.root}
