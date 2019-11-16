@@ -16,7 +16,7 @@
     border: 2px dotted black;
     opacity: 0.8;
     border-radius: 50%;
-    background: rgb(178, 0, 183, 0.2);
+    background: rgba(178, 0, 183, 0.2);
 }
 /* 
 .route::before {

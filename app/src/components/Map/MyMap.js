@@ -8,9 +8,9 @@ import station from '../../data/station.json'
 
 export default () => {
     const map = {
-        lat: 60.167,
-        lng: 24.936,
-        zoom: 13,
+        lat: 60.165,
+        lng: 24.948,
+        zoom: 14,
         number: 1
     };
 
@@ -19,10 +19,14 @@ export default () => {
     const [stationArray, setStationArray] = useState([]);
 
     useEffect(() => {
-        console.log(station.list);
+        // console.log(station.list);
 
         setStationArray(station.list)
     }, []);
+
+    const handleClickMarker = (mark) => {
+        console.log(mark.target.options.icon.options.className.split(' ')[0]);
+    }
 
     return (
         <>
@@ -44,9 +48,9 @@ export default () => {
                             key={station.serial}
                             position={stationPosition}
                             icon={L.divIcon({
-                                className: `${station.color} my-div-icon vh-${station.serial} route content `
-                                // className: `${station.color} my-div-icon vh-${station.veh} route desi-${station.desi} `
+                                className: `${station.serial} my-div-icon `
                             })}
+                            onClick={handleClickMarker}
                             opacity={0.8}
                         >
                             <Popup>
