@@ -5,7 +5,7 @@ import requests
 import pandas as pd
 
 
-def import_hypercell(starttime, stoptime):
+def import_hypercell_raw(starttime, stoptime):
     url = "https://api.hypr.cl/raw/"
     headers = {
         'x-api-key': "iQ0WKQlv3a7VqVSKG6BlE9IQ88bUYQws6UZLRs1B",
@@ -22,3 +22,5 @@ def import_hypercell(starttime, stoptime):
         df[k] = df["raw"].apply(lambda x: x[k])
     df = df.drop("raw", axis=1)
     return df
+
+
