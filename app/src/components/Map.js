@@ -1,14 +1,16 @@
 import React from 'react';
 import '../App.css';
-import Scatter from '../components/charts/Scatter'
+// import Scatter from '../components/charts/Scatter'
+import MyMap from './MyMap';
 
 
 export default function Home() {
 
     return (
-        <main className="main">
+        <>
+            {/* <Scatter /> */}
             <h1>Map</h1>
-            <Scatter />
-        </main>
+            <MyMap />
+        </>
     );
 }
