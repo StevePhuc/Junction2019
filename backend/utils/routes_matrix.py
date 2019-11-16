@@ -28,7 +28,7 @@ class RoutesMatrix:
 
 # change for real data
     def get_time_keys(self):
-        return ['m', 'd', 'c', 'n']
+        return ['m', 'n', 'e']
 
 # change for real data
     def get_station_keys(self):
