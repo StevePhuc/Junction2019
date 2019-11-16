@@ -1,0 +1,31 @@
+.icon-green {
+    background: rgb(22, 188, 22);
+}
+
+.icon-red {
+    background: rgb(221, 22, 22);
+}
+
+.icon-yellow {
+    background: rgb(236, 202, 8);
+}
+
+.my-div-icon {
+    width: 25px !important;
+    height: 25px !important;
+    border: 2px dotted black;
+    opacity: 0.8;
+    border-radius: 50%;
+    background: rgb(178, 0, 183, 0.2);
+}
+/* 
+.route::before {
+    background: blue;
+    color: white;
+    font-size: 18px;
+    padding-left: 7px;
+} */
+
+/* .content::before {
+    content: "";
+} */

@@ -34,3 +34,17 @@
 .App-link {
     color: #09d3ac;
 }
+
+.event {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+.event-select {
+    min-width: 300px;
+    color: black;
+}
+
+.date-select {
+    background-color: white;
+}

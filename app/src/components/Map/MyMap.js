@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Map, Marker, Popup, TileLayer } from "react-leaflet";
-// import L from "leaflet";
-import station from '../data/station.json'
+import L from "leaflet";
+import './icon.css'
+import station from '../../data/station.json'
 
 
 
@@ -42,9 +43,10 @@ export default () => {
                         <Marker
                             key={station.serial}
                             position={stationPosition}
-                            // icon={L.divIcon({
-                            //     className: `${station.color} my-div-icon vh-${station.veh} route desi-${station.desi} `
-                            // })}
+                            icon={L.divIcon({
+                                className: `${station.color} my-div-icon vh-${station.serial} route content `
+                                // className: `${station.color} my-div-icon vh-${station.veh} route desi-${station.desi} `
+                            })}
                             opacity={0.8}
                         >
                             <Popup>

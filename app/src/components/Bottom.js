@@ -24,8 +24,8 @@ export default function SimpleBottomNavigation(props) {
             className={classes.root}
         >
             <BottomNavigationAction label="Home" icon={<Home />} />
+            <BottomNavigationAction label="Map" icon={<LocationOn />} />
             <BottomNavigationAction label="Event" icon={<Event />} />
-            <BottomNavigationAction label="Station" icon={<LocationOn />} />
         </BottomNavigation>
     );
 }
