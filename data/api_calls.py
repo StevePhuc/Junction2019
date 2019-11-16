@@ -73,10 +73,10 @@ def import_hypercell_raw(starttime, stoptime):
     df = pd.DataFrame(columns=["time", "hash", "serial", "distance"])
 
     cur = starttime
-    interval_length = min((starttime-stoptime).total_seconds(), 30)
+    interval_length = min((starttime-stoptime).total_seconds()/60, 15)
 
     while cur < stoptime:
-        new_cur = cur + timedelta(minutes=30)
+        new_cur = cur + timedelta(minutes=interval_length)
 
         loop = asyncio.get_event_loop()
         headers = generate_headers(cur, new_cur, 30)
