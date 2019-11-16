@@ -2,7 +2,7 @@ import json
 from random import seed, random
 from datetime import datetime, timedelta
 
-class CorrelationMatrix:
+class RoutesMatrix:
 
     def __init__(self):
         seed(1)
@@ -17,10 +17,13 @@ class CorrelationMatrix:
             for i in self.station_keys:
                 data[time_key][i] = {}
                 for j in self.station_keys:
-                    data[time_key][i][j] = random()
+                    data[time_key][i][j] = {
+                        'moveForward': random(),
+                        'moveBackward': random()
+                    }
         return data
 
-    def find_correlations(self, base_station, time_frame):
+    def find_routes(self, base_station, time_frame):
         return self.matrix[time_frame][base_station]
 
 # change for real data

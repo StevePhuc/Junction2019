@@ -1,22 +1,42 @@
 from flask import Flask
 from flask import request
 from utils.correlation_matrix import CorrelationMatrix
+from utils.routes_matrix import RoutesMatrix
 
 app = Flask(__name__)
 
-@app.route("/correlation")
+@app.route("/correlation_and_routes")
 def correlation():
-    correlation = CorrelationMatrix()
-    from_station = request.args.get('from')
-    to_station = request.args.get('to')
-    time_start = request.args.get('start')
-    time_finish = request.args.get('finish')
+    correlation_matrix = CorrelationMatrix()
+    routes_matrix = RoutesMatrix()
 
-    if from_station and to_station:
-        if time_start and time_finish:
-            return correlation.find_in_range(from_station, to_station, time_start, time_finish)
-        return correlation.matrix[from_station][to_station]
-    return correlation.matrix
+    base_station = request.args.get('station')
+    time_frame = request.args.get('time')
+
+    station_keys = correlation_matrix.get_station_keys()
+    time_keys = routes_matrix.get_time_keys()
+
+    if base_station and time_frame:
+        if not base_station in station_keys:
+            raise ValueError('station identifier is not correct')
+        if not time_frame in time_keys:
+            raise ValueError('time is not correct')
+
+        correlation_tuples = correlation_matrix.find_correlations(base_station, time_frame)
+        routes_tuples = routes_matrix.find_routes(base_station, time_frame)
+
+        keys_list = [key for key in correlation_tuples if key != base_station]
+
+        return {
+            'data': [{
+                'station': serial,
+                'correlation': correlation_tuples[serial],
+                'moveForward': routes_tuples[serial]['moveForward'],
+                'moveBackwards': routes_tuples[serial]['moveBackward'],
+                } for serial in keys_list],
+            'base_station': base_station,
+            'time_frame': time_frame
+        }
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host= '0.0.0.0')
