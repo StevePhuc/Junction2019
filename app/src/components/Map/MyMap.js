@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Map, Marker, Popup, TileLayer } from "react-leaflet";
+import { Map, Marker, Popup, TileLayer, Polyline } from "react-leaflet";
 import L from "leaflet";
 import './icon.css'
 import station from '../../data/station.json'
@@ -17,16 +17,26 @@ export default () => {
     const position = [map.lat, map.lng];
 
     const [stationArray, setStationArray] = useState([]);
+    const [clickStation, setClickStation] = useState(null);
 
     useEffect(() => {
         // console.log(station.list);
-
         setStationArray(station.list)
     }, []);
 
     const handleClickMarker = (mark) => {
-        console.log(mark.target.options.icon.options.className.split(' ')[0]);
+        console.log('clickMarker');
+
+        const clickStationSerial = (mark.target.options.icon.options.className.split(' ')[0]);
+        setClickStation(stationArray.find(station => station.serial === clickStationSerial))
     }
+    const handleClickMap = (click) => {
+        // console.log('click', click);
+        setClickStation(null)
+
+    }
+    // console.log('clickStation', clickStation);
+
 
     return (
         <>
@@ -34,8 +44,10 @@ export default () => {
                 style={{ height: "80vh" }}
                 center={position}
                 zoom={map.zoom}
-            // zoomControl={false}
-            // scrollWheelZoom={false}
+                // zoomControl={false}
+                // scrollWheelZoom={false}
+                onClick={handleClickMap}
+
             >
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -58,6 +70,15 @@ export default () => {
                             </Popup>
                         </Marker>
                     );
+                })}
+                {clickStation && stationArray.map(station => {
+                    if (clickStation.serial === station.serial) {
+                        return
+                    }
+                    return <Polyline
+                        key={station.serial}
+                        positions={[[clickStation.latitude, clickStation.longitude], [station.latitude, station.longitude]]}
+                        color={'RoyalBlue'} />
                 })}
             </Map>
         </>
