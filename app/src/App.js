@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import logo from './junction.png';
-import businessFinland from './businessFinland.png';
 import './App.css';
 import Bottom from './components/Bottom'
 import Home from './components/Home'

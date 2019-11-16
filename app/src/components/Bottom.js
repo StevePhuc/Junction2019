@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import { Home, Map, LocationOn } from '@material-ui/icons';
-import { getThemeProps } from '@material-ui/styles';
 
 const useStyles = makeStyles({
     root: {
