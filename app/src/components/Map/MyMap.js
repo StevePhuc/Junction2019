@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Map, Marker, Popup, TileLayer, Polyline } from "react-leaflet";
+import { Map, Marker, Popup, TileLayer } from "react-leaflet";
 import L from "leaflet";
 import './icon.css'
 import station from '../../data/station.json'
+import TextPath from 'react-leaflet-textpath';
 
 
 
@@ -45,7 +46,7 @@ export default () => {
                 center={position}
                 zoom={map.zoom}
                 // zoomControl={false}
-                // scrollWheelZoom={false}
+                scrollWheelZoom={false}
                 onClick={handleClickMap}
 
             >
@@ -75,9 +76,16 @@ export default () => {
                     if (clickStation.serial === station.serial) {
                         return null
                     }
-                    return <Polyline
+                    return <TextPath
                         key={station.serial}
-                        positions={[[clickStation.latitude, clickStation.longitude], [station.latitude, station.longitude]]}
+                        positions={
+                            [[clickStation.latitude, clickStation.longitude], [station.latitude, station.longitude]]
+                        }
+                        text=" ▶ 5 | 3 ◀"
+                        center
+                        offset={-5}
+                        // orientation={clickStation.latitude < station.latitude ? 180 : 0}
+                        // below={clickStation.latitude < station.latitude ? false : true}
                         color={'RoyalBlue'} />
                 })}
             </Map>
