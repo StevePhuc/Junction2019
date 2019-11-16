@@ -3,7 +3,7 @@ import './App.css';
 import Bottom from './components/Bottom'
 import Home from './components/Home'
 import Map from './components/Map'
-import Location from './components/Location'
+import Event from './components/Event'
 
 function App() {
 
@@ -14,10 +14,11 @@ function App() {
         <Home />
       }
       {tab === 1 &&
-        <Map />
+        <Event />
       }
       {tab === 2 &&
-        <Location />
+        <Map />
+
       }
       <Bottom tab={tab} setTab={setTab} />
     </div>

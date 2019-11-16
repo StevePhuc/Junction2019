@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Map, Marker, Popup, TileLayer } from "react-leaflet";
-import L from "leaflet";
+// import L from "leaflet";
 import station from '../data/station.json'
 
 

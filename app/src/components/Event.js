@@ -1,5 +1,6 @@
 import React from 'react';
 import '../App.css';
+// import Scatter from '../components/charts/Scatter'
 
 
 
@@ -7,7 +8,9 @@ export default function Home() {
 
     return (
         <main className="main">
-            <h1>Location</h1>
+            <h1>Events</h1>
+            {/* <Scatter /> */}
+
         </main>
     );
 }
