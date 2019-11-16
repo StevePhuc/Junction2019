@@ -1,24 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import Bottom from './components/Bottom'
+import Home from './components/Home'
+import Map from './components/Map'
+import Location from './components/Location'
 
 function App() {
+
+  const [tab, setTab] = useState(1)
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {tab === 0 &&
+        <Home />
+      }
+      {tab === 1 &&
+        <Map />
+      }
+      {tab === 2 &&
+        <Location />
+      }
+      <Bottom tab={tab} setTab={setTab} />
     </div>
   );
 }
