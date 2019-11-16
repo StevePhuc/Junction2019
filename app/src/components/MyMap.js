@@ -15,12 +15,12 @@ export default () => {
 
     const position = [map.lat, map.lng];
 
-    const [tramsArray, setTramsArray] = useState([]);
+    const [stationArray, setStationArray] = useState([]);
 
     useEffect(() => {
         console.log(station.list);
 
-        setTramsArray(station.list)
+        setStationArray(station.list)
     }, []);
 
     return (
@@ -36,21 +36,19 @@ export default () => {
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://cdn.digitransit.fi/map/v1/hsl-map/{z}/{x}/{y}.png"
                 />
-                {tramsArray.map(tram => {
-                    const tramPosition = [tram.latitude, tram.longitude];
+                {stationArray.map(station => {
+                    const stationPosition = [station.latitude, station.longitude];
                     return (
                         <Marker
-                            key={tram.serial}
-                            position={tramPosition}
+                            key={station.serial}
+                            position={stationPosition}
                             // icon={L.divIcon({
-                            //     className: `${tram.color} my-div-icon vh-${tram.veh} route desi-${tram.desi} `
+                            //     className: `${station.color} my-div-icon vh-${station.veh} route desi-${station.desi} `
                             // })}
                             opacity={0.8}
                         >
                             <Popup>
-                                {`Tram Number:${tram.veh}`}
-                                <br />
-                                {`Congestion Rate:${Math.round(tram.congestionRate * 100) / 100}`}
+                                {`Station:${station.description}`}
                             </Popup>
                         </Marker>
                     );
