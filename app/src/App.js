@@ -7,7 +7,7 @@ import Location from './components/Location'
 
 function App() {
 
-  const [tab, setTab] = useState(0)
+  const [tab, setTab] = useState(1)
   return (
     <div className="App">
       {tab === 0 &&
@@ -19,7 +19,7 @@ function App() {
       {tab === 2 &&
         <Location />
       }
-      <Bottom setTab={setTab} />
+      <Bottom tab={tab} setTab={setTab} />
     </div>
   );
 }

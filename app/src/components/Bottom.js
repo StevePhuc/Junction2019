@@ -12,15 +12,13 @@ const useStyles = makeStyles({
 
 export default function SimpleBottomNavigation(props) {
     const classes = useStyles();
-    const [value, setValue] = React.useState(0);
+    const { tab, setTab } = props
 
     return (
         <BottomNavigation
-            value={value}
+            value={tab}
             onChange={(event, newValue) => {
-                setValue(newValue);
-                // console.log(newValue);
-                props.setTab(newValue)
+                setTab(newValue)
             }}
             showLabels
             className={classes.root}
