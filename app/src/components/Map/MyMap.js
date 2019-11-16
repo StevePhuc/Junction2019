@@ -25,7 +25,7 @@ export default () => {
     }, []);
 
     const handleClickMarker = (mark) => {
-        console.log('clickMarker');
+        // console.log('clickMarker');
 
         const clickStationSerial = (mark.target.options.icon.options.className.split(' ')[0]);
         setClickStation(stationArray.find(station => station.serial === clickStationSerial))
@@ -73,7 +73,7 @@ export default () => {
                 })}
                 {clickStation && stationArray.map(station => {
                     if (clickStation.serial === station.serial) {
-                        return
+                        return null
                     }
                     return <Polyline
                         key={station.serial}
