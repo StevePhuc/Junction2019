@@ -1,4 +1,5 @@
 # Requires aiohttp
+# Requires nest-asyncio
 
 import pandas as pd
 from aiohttp import ClientSession
@@ -73,10 +74,9 @@ def import_hypercell_raw(starttime, stoptime):
     df = pd.DataFrame(columns=["time", "hash", "serial", "distance"])
 
     cur = starttime
-    interval_length = min((starttime-stoptime).total_seconds()/60, 15)
 
     while cur < stoptime:
-        new_cur = cur + timedelta(minutes=interval_length)
+        new_cur = cur + timedelta(minutes=15)
 
         loop = asyncio.get_event_loop()
         headers = generate_headers(cur, new_cur, 30)
