@@ -22,7 +22,7 @@ export default function RadioButtonsGroup({ valueTime, setValueTime }) {
     };
 
     return (
-        <div>
+        <>
             <FormControl component="fieldset" className={classes.formControl}>
                 {/* <FormLabel component="legend">Time</FormLabel> */}
                 <RadioGroup aria-label="gender" className={classes.selectTime} value={valueTime} onChange={handleChange}>
@@ -34,6 +34,6 @@ export default function RadioButtonsGroup({ valueTime, setValueTime }) {
                 </RadioGroup>
             </FormControl>
 
-        </div>
+        </>
     );
 }

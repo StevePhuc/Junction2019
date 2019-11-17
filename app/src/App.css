@@ -1,7 +1,7 @@
 .App {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .App > * {
@@ -29,6 +29,11 @@
     color: white;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
+    /* min-height: 80vh; */
+}
+
+.my-map {
+    flex: 1 1 auto;
 }
 
 .App-link {
@@ -53,8 +58,28 @@
     margin-top: 10px;
     display: flex;
     justify-content: center;
+    flex: 1;
+    align-items: center;
 }
 
 .map-header .title {
     margin: 10px 50px 10px 10px;
+}
+
+.help div {
+    max-width: 900px;
+    margin: auto;
+}
+
+.help h1 {
+    text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+    .map-header {
+        flex-wrap: wrap;
+    }
+    .help div {
+        padding: 10px;
+    }
 }
