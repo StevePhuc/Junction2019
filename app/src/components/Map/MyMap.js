@@ -7,11 +7,11 @@ import TextPath from 'react-leaflet-textpath';
 
 
 
-export default ({ stateSwitch }) => {
+export default ({ stateSwitch, valueTime }) => {
     const map = {
         lat: 60.165,
         lng: 24.948,
-        zoom: 14,
+        zoom: 13,
         number: 1
     };
 
@@ -19,11 +19,31 @@ export default ({ stateSwitch }) => {
 
     const [stationArray, setStationArray] = useState([]);
     const [clickStation, setClickStation] = useState(null);
+    const [dataFetch, setDataFetch] = useState(null);
 
     useEffect(() => {
         // console.log(station.list);
         setStationArray(station.list)
     }, []);
+
+    useEffect(() => {
+        if (clickStation) {
+            console.log('fetch station', clickStation);
+            console.log('fetch time', valueTime);
+            const url = `https://crowd-control-junction.herokuapp.com/correlation_and_routes?serial=${clickStation.serial}&time=${valueTime}`
+            fetch(url)
+                .then(res => res.json())
+                .then(json => {
+                    console.log(json);
+                    setDataFetch(json)
+                })
+                .catch(error => {
+                    console.log('error', error);
+                    setDataFetch(null)
+                    alert('Server is down')
+                })
+        }
+    }, [clickStation, valueTime]);
 
     const handleClickMarker = (mark) => {
         // console.log('clickMarker');
@@ -34,6 +54,7 @@ export default ({ stateSwitch }) => {
     const handleClickMap = (click) => {
         // console.log('click', click);
         setClickStation(null)
+        setDataFetch(null)
 
     }
     // console.log('clickStation', clickStation);
@@ -56,7 +77,28 @@ export default ({ stateSwitch }) => {
                 />
                 {stationArray.map(station => {
                     const stationPosition = [station.latitude, station.longitude];
-                    const paddingCor = 15
+                    let paddingCor = 7
+                    let colorStatus = ''
+                    if (stateSwitch.cor && dataFetch) {
+                        // paddingCor = 1
+                        if (dataFetch.base_station !== station.serial) {
+                            const dataStation = dataFetch.data.find(data => data.serial === station.serial)
+
+                            if (dataStation) {
+                                const cor = Math.abs(Math.round(dataStation.correlation * 10))
+                                paddingCor = 2 + cor
+
+                                if (dataStation.correlation > 0) {
+                                    colorStatus = 'blue'
+                                } else {
+                                    colorStatus = 'red'
+                                }
+                            } else {
+                                colorStatus = 'hide'
+                            }
+
+                        }
+                    }
                     return (
                         <Marker
                             key={station.serial}
@@ -64,7 +106,7 @@ export default ({ stateSwitch }) => {
                             icon={L.divIcon({
                                 className: `${station.serial} my-div-icon 
                                 ${clickStation && clickStation.serial === station.serial ? 'selected' : ''}
-                                padding-${paddingCor}
+                                padding-${paddingCor} color-${colorStatus}
                                 `
                             })}
                             onClick={handleClickMarker}
@@ -80,12 +122,22 @@ export default ({ stateSwitch }) => {
                     if (clickStation.serial === station.serial) {
                         return null
                     }
+                    let text = ''
+                    if (dataFetch) {
+                        if (dataFetch.base_station !== station.serial) {
+                            const dataStation = dataFetch.data.find(data => data.serial === station.serial)
+                            if (dataStation) {
+                                text = `▶ ${Math.round(dataStation.moveForward * 10)} | ${Math.round(dataStation.moveBackwards * 10)} ◀`
+                            }
+
+                        }
+                    }
                     return <TextPath
                         key={station.serial}
                         positions={
                             [[clickStation.latitude, clickStation.longitude], [station.latitude, station.longitude]]
                         }
-                        text=" ▶ 5 | 3 ◀"
+                        text={text}
                         center
                         offset={-5}
                         // orientation={clickStation.latitude < station.latitude ? 180 : 0}

@@ -2,10 +2,8 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
 
 const useStyles = makeStyles(theme => ({
     formControl: {
@@ -28,9 +26,10 @@ export default function RadioButtonsGroup({ valueTime, setValueTime }) {
             <FormControl component="fieldset" className={classes.formControl}>
                 {/* <FormLabel component="legend">Time</FormLabel> */}
                 <RadioGroup aria-label="gender" className={classes.selectTime} value={valueTime} onChange={handleChange}>
-                    <FormControlLabel value="morning" control={<Radio />} label="Morning" />
-                    <FormControlLabel value="afternoon" control={<Radio />} label="Afternoon" />
-                    <FormControlLabel value="evening" control={<Radio />} label="Evening" />
+                    <FormControlLabel value="m" control={<Radio />} label="Morning" />
+                    <FormControlLabel value="d" control={<Radio />} label="Day" />
+                    <FormControlLabel value="e" control={<Radio />} label="Evening" />
+                    <FormControlLabel value="n" control={<Radio />} label="Midnight" />
 
                 </RadioGroup>
             </FormControl>
