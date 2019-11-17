@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import './App.css';
 import Bottom from './components/Bottom'
 import Home from './components/Home'
-import Map from './components/Map'
-import Location from './components/Location'
+import Map from './components/Map/Map'
+import Details from './components/Details'
 
 function App() {
 
@@ -17,7 +17,9 @@ function App() {
         <Map />
       }
       {tab === 2 &&
-        <Location />
+        // <Event />
+        <Details />
+
       }
       <Bottom tab={tab} setTab={setTab} />
     </div>

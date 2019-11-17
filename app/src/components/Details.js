@@ -5,9 +5,13 @@ import '../App.css';
 
 export default function Home() {
 
+
+
     return (
         <main className="main">
-            <h1>Location</h1>
+            <div className='event'>
+                <h1>Help</h1>
+            </div>
         </main>
     );
 }

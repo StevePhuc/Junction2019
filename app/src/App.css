@@ -34,3 +34,27 @@
 .App-link {
     color: #09d3ac;
 }
+
+.event {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+.event-select {
+    min-width: 300px;
+    color: black;
+}
+
+.date-select {
+    background-color: white;
+}
+
+.map-header {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.map-header .title {
+    margin: 10px 50px 10px 10px;
+}
