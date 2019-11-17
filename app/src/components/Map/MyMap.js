@@ -4,6 +4,7 @@ import L from "leaflet";
 import './icon.css'
 import station from '../../data/station.json'
 import TextPath from 'react-leaflet-textpath';
+import Snackbar from './Snackbar'
 
 
 
@@ -20,6 +21,8 @@ export default ({ stateSwitch, valueTime }) => {
     const [stationArray, setStationArray] = useState([]);
     const [clickStation, setClickStation] = useState(null);
     const [dataFetch, setDataFetch] = useState(null);
+    const [open, setOpen] = useState({ open: false, message: '' });
+
 
     useEffect(() => {
         // console.log(station.list);
@@ -40,7 +43,8 @@ export default ({ stateSwitch, valueTime }) => {
                 .catch(error => {
                     console.log('error', error);
                     setDataFetch(null)
-                    alert('Server is down')
+                    // alert('Server is down')
+                    setOpen({ open: true, message: 'Server is down' })
                 })
         }
     }, [clickStation, valueTime]);
@@ -129,10 +133,13 @@ export default ({ stateSwitch, valueTime }) => {
                             if (dataStation) {
                                 text = `▶ ${Math.round(dataStation.moveForward * 10)} | ${Math.round(dataStation.moveBackwards * 10)} ◀`
                             } else {
-                                return null
+                                text = null
                             }
 
                         }
+                    }
+                    if (!text) {
+                        return null
                     }
                     return <TextPath
                         key={station.serial}
@@ -147,6 +154,7 @@ export default ({ stateSwitch, valueTime }) => {
                         color={'RoyalBlue'} />
                 })}
             </Map>
+            <Snackbar open={open} setOpen={setOpen} />
         </div>
     );
 };

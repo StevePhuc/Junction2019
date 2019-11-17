@@ -25,7 +25,7 @@ export default function SimpleBottomNavigation(props) {
         >
             <BottomNavigationAction label="Home" icon={<Home />} />
             <BottomNavigationAction label="Map" icon={<LocationOn />} />
-            <BottomNavigationAction label="Details" icon={<HelpOutline />} />
+            <BottomNavigationAction label="Help" icon={<HelpOutline />} />
         </BottomNavigation>
     );
 }
