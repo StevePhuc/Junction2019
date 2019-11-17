@@ -16,7 +16,7 @@ export default function SwitchLabels({ stateSwitch, setStateSwitch }) {
                 control={
                     <Switch checked={stateSwitch.cor} onChange={handleChange('cor')} value="cor" />
                 }
-                label="Correlation"
+                label="Relation"
             />
             <FormControlLabel
                 control={

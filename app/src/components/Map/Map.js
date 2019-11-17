@@ -16,7 +16,7 @@ export default function Home() {
     return (
         <>
             <div className='map-header'>
-                <h1 className='title'>Map</h1>
+                <h1 className='title'>GeoRelations</h1>
                 <TimeRadio valueTime={valueTime} setValueTime={setValueTime} />
                 <SwitchComp stateSwitch={stateSwitch} setStateSwitch={setStateSwitch} />
             </div>
