@@ -7,7 +7,7 @@ import TextPath from 'react-leaflet-textpath';
 
 
 
-export default () => {
+export default ({ stateSwitch }) => {
     const map = {
         lat: 60.165,
         lng: 24.948,
@@ -40,7 +40,7 @@ export default () => {
 
 
     return (
-        <>
+        <div className='my-map'>
             <Map
                 style={{ height: "80vh" }}
                 center={position}
@@ -56,12 +56,16 @@ export default () => {
                 />
                 {stationArray.map(station => {
                     const stationPosition = [station.latitude, station.longitude];
+                    const paddingCor = 15
                     return (
                         <Marker
                             key={station.serial}
                             position={stationPosition}
                             icon={L.divIcon({
-                                className: `${station.serial} my-div-icon `
+                                className: `${station.serial} my-div-icon 
+                                ${clickStation && clickStation.serial === station.serial ? 'selected' : ''}
+                                padding-${paddingCor}
+                                `
                             })}
                             onClick={handleClickMarker}
                             opacity={0.8}
@@ -72,7 +76,7 @@ export default () => {
                         </Marker>
                     );
                 })}
-                {clickStation && stationArray.map(station => {
+                {clickStation && stateSwitch.flow && stationArray.map(station => {
                     if (clickStation.serial === station.serial) {
                         return null
                     }
@@ -89,6 +93,6 @@ export default () => {
                         color={'RoyalBlue'} />
                 })}
             </Map>
-        </>
+        </div>
     );
 };
