@@ -58,3 +58,21 @@
 .map-header .title {
     margin: 10px 50px 10px 10px;
 }
+
+.help div {
+    max-width: 900px;
+    margin: auto;
+}
+
+.help h1 {
+    text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+    .map-header {
+        flex-wrap: wrap;
+    }
+    .help div {
+        padding: 10px;
+    }
+}

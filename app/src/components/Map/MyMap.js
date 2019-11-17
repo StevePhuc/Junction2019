@@ -76,7 +76,7 @@ export default ({ stateSwitch, valueTime }) => {
                 center={position}
                 zoom={map.zoom}
                 // zoomControl={false}
-                scrollWheelZoom={false}
+                // scrollWheelZoom={false}
                 onClick={handleClickMap}
 
             >
