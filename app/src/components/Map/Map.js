@@ -1,14 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../../App.css';
 import MyMap from './MyMap';
-
+import TimeRadio from './TimeRadio'
+import SwitchComp from './SwitchComp'
 
 export default function Home() {
+    const [stateSwitch, setStateSwitch] = useState({
+        cor: true,
+        flow: false,
+    });
+
+    const [valueTime, setValueTime] = React.useState('morning');
+
 
     return (
         <>
-            <h1>Map</h1>
-            <MyMap />
+            <div className='map-header'>
+                <h1 className='title'>Map</h1>
+                <TimeRadio valueTime={valueTime} setValueTime={setValueTime} />
+                <SwitchComp stateSwitch={stateSwitch} setStateSwitch={setStateSwitch} />
+            </div>
+
+            <MyMap stateSwitch={stateSwitch} />
         </>
     );
 }
