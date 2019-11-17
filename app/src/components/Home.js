@@ -17,11 +17,17 @@ export default function Home() {
                 rel="noopener noreferrer"
             >
                 Junction 2019
-        </a>
+            </a>
             <img src={businessFinland} className="businessFinland-logo" alt="logo" />
             <p>
                 The <code>DNA</code> of Helsinki.
-        </p>
+            </p>
+            <div className='team'>
+                <p >
+                    Mateusz Gierlach, Moritz Lange, Andres Huertas, Stanislav Bondarenko, Steve Phuc
+                </p>
+                <p className='copyright'>GeoRelations © CrowdControl 2019</p>
+            </div>
         </main>
     );
 }
