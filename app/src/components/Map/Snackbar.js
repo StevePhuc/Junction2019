@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import Button from '@material-ui/core/Button';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import ErrorIcon from '@material-ui/icons/Error';
 import InfoIcon from '@material-ui/icons/Info';
@@ -78,18 +77,10 @@ MySnackbarContentWrapper.propTypes = {
     variant: PropTypes.oneOf(['error', 'info', 'success', 'warning']).isRequired,
 };
 
-const useStyles2 = makeStyles(theme => ({
-    margin: {
-        margin: theme.spacing(1),
-    },
-}));
+
 
 export default function CustomizedSnackbars({ open, setOpen }) {
-    const classes = useStyles2();
-    // const [open, setOpen] = useState(false);
-    // const handleClick = () => {
-    //     setOpen(true);
-    // };
+
 
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
@@ -101,9 +92,6 @@ export default function CustomizedSnackbars({ open, setOpen }) {
 
     return (
         <div>
-            {/* <Button variant="outlined" className={classes.margin} onClick={handleClick}>
-                Open success snackbar
-            </Button> */}
             <Snackbar
                 anchorOrigin={{
                     vertical: 'top',

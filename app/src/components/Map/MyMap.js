@@ -38,7 +38,12 @@ export default ({ stateSwitch, valueTime }) => {
                 .then(res => res.json())
                 .then(json => {
                     console.log(json);
-                    setDataFetch(json)
+                    if (json.data.length > 0) {
+                        setDataFetch(json)
+                    } else {
+                        setDataFetch(null)
+                        setOpen({ open: true, message: 'No enough information for calculation' })
+                    }
                 })
                 .catch(error => {
                     console.log('error', error);
@@ -130,8 +135,8 @@ export default ({ stateSwitch, valueTime }) => {
                     if (dataFetch) {
                         if (dataFetch.base_station !== station.serial) {
                             const dataStation = dataFetch.data.find(data => data.serial === station.serial)
-                            if (dataStation) {
-                                text = `▶ ${Math.round(dataStation.moveForward * 10)} | ${Math.round(dataStation.moveBackwards * 10)} ◀`
+                            if (dataStation && (dataStation.moveForward || dataStation.moveBackwards)) {
+                                text = `▶ ${Math.round(dataStation.moveForward * 10) / 10} | ${Math.round(dataStation.moveBackwards * 10) / 10} ◀`
                             } else {
                                 text = null
                             }
@@ -144,7 +149,9 @@ export default ({ stateSwitch, valueTime }) => {
                     return <TextPath
                         key={station.serial}
                         positions={
-                            [[clickStation.latitude, clickStation.longitude], [station.latitude, station.longitude]]
+                            (clickStation.longitude < station.longitude) ?
+                                [[clickStation.latitude, clickStation.longitude], [station.latitude, station.longitude]] :
+                                [[station.latitude, station.longitude], [clickStation.latitude, clickStation.longitude]]
                         }
                         text={text}
                         center

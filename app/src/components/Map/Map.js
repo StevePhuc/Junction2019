@@ -10,7 +10,7 @@ export default function Home() {
         flow: false,
     });
 
-    const [valueTime, setValueTime] = React.useState('m');
+    const [valueTime, setValueTime] = React.useState('d');
 
 
     return (
