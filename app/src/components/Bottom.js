@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import { Home, Map, LocationOn } from '@material-ui/icons';
+import { Home, Event, LocationOn } from '@material-ui/icons';
 
 const useStyles = makeStyles({
     root: {
@@ -24,8 +24,8 @@ export default function SimpleBottomNavigation(props) {
             className={classes.root}
         >
             <BottomNavigationAction label="Home" icon={<Home />} />
-            <BottomNavigationAction label="Map" icon={<Map />} />
-            <BottomNavigationAction label="Nearby" icon={<LocationOn />} />
+            <BottomNavigationAction label="Map" icon={<LocationOn />} />
+            <BottomNavigationAction label="Event" icon={<Event />} />
         </BottomNavigation>
     );
 }

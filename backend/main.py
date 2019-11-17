@@ -2,10 +2,11 @@ import os
 from flask import Flask
 from flask import request
 from utils.correlation_matrix import CorrelationMatrix
+from utils.routes_matrix import RoutesMatrix
 
 app = Flask(__name__)
 
-@app.route("/correlation")
+@app.route("/correlation_and_routes")
 def correlation():
     source_folder = '../data/correlation'
 
@@ -37,4 +38,4 @@ def correlation():
         }
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host= '0.0.0.0')
