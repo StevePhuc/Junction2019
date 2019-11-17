@@ -16,6 +16,7 @@
 .businessFinland-logo {
     max-width: 300px;
     padding: 10px;
+    margin: 10vh;
 }
 
 .main {
@@ -38,6 +39,7 @@
 
 .App-link {
     color: #09d3ac;
+    text-decoration: none;
 }
 
 .event {
@@ -73,6 +75,17 @@
 
 .help h1 {
     text-align: center;
+}
+
+.team {
+    font-size: 14px;
+    text-align: center;
+    padding: 10px;
+    margin-top: auto;
+}
+
+.copyright {
+    font-style: italic;
 }
 
 @media only screen and (max-width: 600px) {
