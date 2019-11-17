@@ -10,7 +10,7 @@ export default function Home() {
         flow: false,
     });
 
-    const [valueTime, setValueTime] = React.useState('morning');
+    const [valueTime, setValueTime] = React.useState('m');
 
 
     return (
@@ -21,7 +21,7 @@ export default function Home() {
                 <SwitchComp stateSwitch={stateSwitch} setStateSwitch={setStateSwitch} />
             </div>
 
-            <MyMap stateSwitch={stateSwitch} />
+            <MyMap stateSwitch={stateSwitch} valueTime={valueTime} />
         </>
     );
 }
