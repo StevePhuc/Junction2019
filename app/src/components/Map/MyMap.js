@@ -128,6 +128,8 @@ export default ({ stateSwitch, valueTime }) => {
                             const dataStation = dataFetch.data.find(data => data.serial === station.serial)
                             if (dataStation) {
                                 text = `▶ ${Math.round(dataStation.moveForward * 10)} | ${Math.round(dataStation.moveBackwards * 10)} ◀`
+                            } else {
+                                return null
                             }
 
                         }
