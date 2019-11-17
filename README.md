@@ -42,3 +42,7 @@ In order to explore these connections:
 That's easy: Because they show how much visitor numbers in one place are related to visitor numbers in another place.
 
 There is also a more mathematical interpretation, based on a statistical approach to visitor numbers as random variables. Using a linear regression approach, squared correlation explains how much of the variance in visitor numbers of one place is explained by those of another.
+
+------------------
+Link to repository with the backend code:
+https://github.com/BondarenkoStas/CrowdControl_Junction_backend
